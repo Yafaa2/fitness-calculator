@@ -1,0 +1,139 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #e0fae6;
+}
+
+.container {
+    font-family: 'Poppins', sans-serif;
+    max-width: 800px;
+    margin: auto;
+    padding: 40px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.banner {
+    width: 800px;
+    background-color: rgb(76, 175, 80);
+    text-align: center;
+    margin: auto;
+    padding: 17px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    border-radius: 15px 15px 0px 0px;
+}
+
+h1 {
+    font-family: 'Poppins', sans-serif;
+    color: rgb(76, 175, 80);
+    text-align: center;
+}
+
+h2 {
+    font-family: 'Poppins', sans-serif;
+    color: rgb(76, 175, 80);
+    text-align: center;
+}
+
+#switchButton {
+    background-color: rgb(76, 175, 80);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+}
+
+.calculator {
+    margin-top: 20px;
+    padding: 15px;
+    border: 0.5px solid #ccc;
+    border-radius: 5px;
+}
+
+.hidden {
+    display: none;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start; 
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+}
+
+label {
+    margin-right: 10px;
+    font-size: 16px;
+    width: 120px;
+    text-align: left; 
+}
+
+input[type="number"] {
+    padding: 8px;
+    font-size: 15px;
+    width: 200px;
+    border-radius: 5px;
+    border-color: rgb(191, 191, 191);
+}
+
+
+#calculateBMI {
+    background-color: rgb(76, 175, 80);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+    width: 150px; 
+    display: block;
+    margin: 15px auto; 
+}
+
+.bmiResults {
+    margin-top: 20px;
+}
+
+.bmiResults h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+#saveButton {
+    background-color: rgb(76, 175, 80);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+}
+
+.bmiResults {
+    margin-top: 20px;
+     
+    background-color: #e0fae6; 
+    padding: 15px; 
+    border-radius: 5px; 
+}
