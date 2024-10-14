@@ -80,6 +80,7 @@ h2 {
     align-items: center;
 }
 
+
 label {
     margin-right: 10px;
     font-size: 16px;
@@ -93,6 +94,14 @@ input[type="number"] {
     width: 200px;
     border-radius: 5px;
     border-color: rgb(191, 191, 191);
+}
+
+select{
+    padding: 8px;
+    font-size: 15px;
+    width: 200px;
+    border-radius: 5px;
+    border-color: rgb(153, 153, 153);
 }
 
 
@@ -110,11 +119,11 @@ input[type="number"] {
     margin: 15px auto; 
 }
 
-.bmiResults {
+.Results {
     margin-top: 20px;
 }
 
-.bmiResults h4 {
+.Results h4 {
     margin-bottom: 10px;
     font-size: 18px;
 }
@@ -130,10 +139,26 @@ input[type="number"] {
     margin-top: 15px;
 }
 
-.bmiResults {
+.Results {
     margin-top: 20px;
-     
+
     background-color: #e0fae6; 
     padding: 15px; 
     border-radius: 5px; 
 }
+
+
+#calculateCalories{
+    background-color: rgb(76, 175, 80);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+    width: 150px; 
+    display: block;
+    margin: 15px auto; 
+}
+

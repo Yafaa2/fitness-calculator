@@ -28,3 +28,49 @@ function calculateBMI() {
 
 // Event listener for button click
 document.getElementById('calculateBMI').addEventListener('click', calculateBMI);
+
+
+//Switch Button Implementation
+class Show {
+    //implementing class for switching between calculators
+    constructor(bmiDisplay, caloriesDisplay, switchButtonDisplay, currentCalculatorDisplay) {
+        this.bmi = document.getElementById(bmiDisplay);
+        this.calories = document.getElementById(caloriesDisplay);
+        this.switchButton = document.getElementById(switchButtonDisplay);
+        this.currentCalculator = document.getElementById(currentCalculatorDisplay);
+    }
+
+    showCalories() {
+        
+        this.bmi.style.display = 'none';
+        this.calories.style.display = 'block';
+        this.switchButton.textContent = 'Switch to BMI Calculator';
+        this.currentCalculator.textContent = 'Calories';
+    }
+
+    showBMI() {
+        
+        this.bmi.style.display = 'block';
+        this.calories.style.display = 'none';
+        this.switchButton.textContent = 'Switch to Calories Calculator';
+        this.currentCalculator.textContent = 'BMI';
+    }
+}
+
+const switchCalculators = new Show('bmiCalculator', 'caloriesCalculator', 'switchButton', 'currentCalculator');
+
+let isBMICalculatorVisible = true;
+
+function switchNow () {
+    //conditioning to switch between calculators
+
+    if (isBMICalculatorVisible){
+        switchCalculators.showCalories();
+    }else{
+        switchCalculators.showBMI();
+    }
+    // Toggling the flag to remember the current state
+    isBMICalculatorVisible = !isBMICalculatorVisible;  
+}
+
+document.getElementById('switchButton').addEventListener('click',switchNow)
