@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>.Fit</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="banner">
+        <h1></h1>
+    </div>
+    <div class = "container">
+        <h1>.Fit</h1>
+        <!-- Switch Button -->
+        <button id="switchButton">Switch to Calories Calculator</button>
+        <h2 id="currentCalculator">BMI</h2>
+
+        <!-- BMI Calculator Section -->
+        <div id="bmiCalculator" class="calculator">
+            <div class="inputs">
+                <div class="input-group">
+                    <label for="bmiHeight">Height (cm) </label>
+                    <input type="number" id="bmiHeight" placeholder="Enter the height">
+                </div>
+                <div class="input-group">
+                    <label for="bmiWeight">Weight (kg) </label>
+                    <input type="number" id="bmiWeight" placeholder="Enter the weight">
+                </div>
+            </div>
+            <button id="calculateBMI">Calculate BMI</button>
+
+            <div class="bmiResults">
+                <h4>Results: </h4>
+                <p>BMI: <span id="bmiResult">0</span></p>
+                <p>Classification: <span id="bmiClassification">N/A</span></p>
+            </div>
+            <button id="saveButton">Save Results</button>
+        </div>
+
+        <!-- Calories Calculator Section (Initially Hidden) -->
+        <div id="caloriesCalculator" class="calculator" style="display: none;">
+            <div class="inputs">
+                <div class="input-group">
+                    <label for="caloriesAge">Age</label>
+                    <input type="number" id="caloriesAge" placeholder="Enter your age">
+                </div>
+                <div class="input-group">
+                    <label>Gender</label>
+                    <input type="radio" id="genderMale" name="gender" value="male">
+                    <label for="genderMale">Male</label>
+                    <input type="radio" id="genderFemale" name="gender" value="female">
+                    <label for="genderFemale">Female</label>
+                </div>
+                <div class="input-group">
+                    <label for="caloriesHeight">Height (cm) </label>
+                    <input type="number" id="caloriesHeight" placeholder="Enter the height">
+                </div>
+                <div class="input-group">
+                    <label for="caloriesWeight">Weight (kg) </label>
+                    <input type="number" id="caloriesWeight" placeholder="Enter the weight">
+                </div>
+                <div class="input-group">
+                    <label for="activityLevel">Activity Level</label>
+                    <select id="activityLevel">
+                        <option value="sedentary">Sedentary</option>
+                        <option value="light">Light activity</option>
+                        <option value="moderate">Moderate activity</option>
+                        <option value="active">Active</option>
+                        <option value="very active">Very active</option>
+                    </select>
+                </div>
+            </div>
+            <button id="calculateCalories">Calculate Calories</button>
+
+            <div class="caloriesResults">
+                <h4>Results: </h4>
+                <p>To Lose Weight: <span id="caloriesLoseWeight">0</span></p>
+                <p>To Maintain Weight: <span id="caloriesMaintainWeight">0</span></p>
+                <p>To Gain Weight: <span id="caloriesGainWeight">0</span></p>
+            </div>
+            <button id="saveButtonCalories">Save Results</button>
+        </div>
+    </div>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
