@@ -28,14 +28,20 @@
                     <input type="number" id="bmiWeight" placeholder="Enter the weight">
                 </div>
             </div>
-            <button id="calculateBMI">Calculate BMI</button>
+
+            <div id = "BMIbtns">
+             <button id="calculateBMI">Calculate BMI</button>
+             <span id="clearBMI" class="clear-link">Clear</span>
+            </div>
 
             <div class="Results">
                 <h4>Results: </h4>
                 <p>BMI: <span id="bmiResult">0</span></p>
                 <p>Classification: <span id="bmiClassification">N/A</span></p>
             </div>
-            <button id="saveButton">Save Results</button>
+            <a href="sign_up.html">
+             <button id="saveButton">Save Results</button>
+            </a>
         </div>
 
         <!-- Calories Calculator Section (Initially Hidden) -->
@@ -71,7 +77,11 @@
                     </select>
                 </div>
             </div>
-            <button id="calculateCalories">Calculate Calories</button>
+
+            <div id  = "Caloriesbtns">
+             <button id="calculateCalories">Calculate Calories</button>
+             <span id="clearCalories" class="clear-link">Clear</span>
+            </div>
 
             <div class="Results">
                 <h4>Results: </h4>
@@ -79,7 +89,9 @@
                 <p>To Maintain Weight: <span id="caloriesMaintainWeight">0</span></p>
                 <p>To Gain Weight: <span id="caloriesGainWeight">0</span></p>
             </div>
-            <button id="saveButton">Save Results</button>
+            <a href="sign_up.html">
+             <button id="saveButton">Save Results</button>
+            </a>
         </div>
     </div>
 

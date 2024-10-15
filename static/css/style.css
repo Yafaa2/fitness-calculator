@@ -162,3 +162,11 @@ select{
     margin: 15px auto; 
 }
 
+.clear-link {
+    color: rgb(76, 175, 80); 
+    text-decoration: underline; 
+    cursor: pointer;
+    margin-left: 10px; 
+}
+
+

@@ -1,8 +1,12 @@
-//A function to fetch the response data from the backend
+// a function to get element by id as to prevent repetition
+function get(id){
+    return document.getElementById(id)
+}
 
+//a function to fetch the response data from the backend
 function calculateBMI() {
-    let height = parseFloat(document.getElementById('bmiHeight').value);
-    let weight = parseFloat(document.getElementById('bmiWeight').value);
+    let height = parseFloat(get('bmiHeight').value);
+    let weight = parseFloat(get('bmiWeight').value);
 
     if (isNaN(height) || isNaN(weight) || height <= 0 || weight <= 0) {
         alert('Please enter valid height and weight.');
@@ -18,26 +22,25 @@ function calculateBMI() {
         return response.json();
     })
     .then(function(data) {
-        document.getElementById('bmiResult').textContent = data.bmi;
-        document.getElementById('bmiClassification').textContent = data.classification;
+        get('bmiResult').textContent = data.bmi;
+        get('bmiClassification').textContent = data.classification;
     })
     .catch(function(error) {
         console.error('Error:', error);  
     });
 }
 
-// Event listener for button click
-document.getElementById('calculateBMI').addEventListener('click', calculateBMI);
+get('calculateBMI').addEventListener('click', calculateBMI);
 
 
 //Switch Button Implementation
 class Show {
     //implementing class for switching between calculators
     constructor(bmiDisplay, caloriesDisplay, switchButtonDisplay, currentCalculatorDisplay) {
-        this.bmi = document.getElementById(bmiDisplay);
-        this.calories = document.getElementById(caloriesDisplay);
-        this.switchButton = document.getElementById(switchButtonDisplay);
-        this.currentCalculator = document.getElementById(currentCalculatorDisplay);
+        this.bmi = get(bmiDisplay);
+        this.calories = get(caloriesDisplay);
+        this.switchButton = get(switchButtonDisplay);
+        this.currentCalculator = get(currentCalculatorDisplay);
     }
 
     showCalories() {
@@ -73,4 +76,31 @@ function switchNow () {
     isBMICalculatorVisible = !isBMICalculatorVisible;  
 }
 
-document.getElementById('switchButton').addEventListener('click',switchNow)
+get('switchButton').addEventListener('click',switchNow)
+
+//clear button implementation
+function clearBMI (){
+    get('bmiHeight').value = '';
+    get('bmiWeight').value = '';
+    get('bmiResult').innerText = '0';
+    get('bmiClassification').innerText= '';
+}
+
+get('clearBMI').addEventListener('click',clearBMI)
+
+function clearCalories (){
+
+    get('caloriesAge').value = '';
+    get('caloriesHeight').value = '';
+    get('caloriesWeight').value = '';
+    get('activityLevel').selectedIndex = 0;
+    get('caloriesLoseWeight').innerText = ''; 
+    get('caloriesMaintainWeight').innerText = ''; 
+    get('caloriesGainWeight').innerText = ''; 
+
+    const Radios = document.getElementsByName('gender');
+    for (let i = 0; i < Radios.length; i++) {
+        Radios[i].checked = false;
+    }
+}
+get('clearCalories').addEventListener('click',clearCalories)
