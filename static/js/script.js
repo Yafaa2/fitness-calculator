@@ -3,7 +3,7 @@ function get(id){
     return document.getElementById(id)
 }
 
-//a function to fetch the response data from the backend
+//a function to fetch the BMI response data from the backend
 function calculateBMI() {
     let height = parseFloat(get('bmiHeight').value);
     let weight = parseFloat(get('bmiWeight').value);
@@ -32,6 +32,39 @@ function calculateBMI() {
 
 get('calculateBMI').addEventListener('click', calculateBMI);
 
+//a function to fetch the Calories response data from the backend
+function calculateCalories(){
+    let age = parseFloat(get('caloriesAge').value);
+    let gender = document.querySelector('input[name="gender"]:checked').value;
+    let height = parseFloat(get('caloriesHeight').value);
+    let weight = parseFloat(get('caloriesWeight').value);
+    let activityLevel = get('activityLevel').value;
+
+    if ([age, height, weight].some(item => isNaN(item)) || !gender) {
+        alert('Please enter valid inputs');
+        return;
+    }
+
+    fetch('/calculate-calories', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ age: age, gender: gender, height: height, weight: weight, activityLevel: activityLevel })
+    })
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(user_data) {
+        get('caloriesLoseWeight').textContent = user_data["To Lose Weight"] + ' Calories';
+        get('caloriesMaintainWeight').textContent = user_data["To Maintain Weight"] + ' Calories';
+        get('caloriesGainWeight').textContent = user_data["To Gain Weight"] + ' Calories';
+    })
+    .catch(function(error) {
+        console.error('Error:', error);  
+    });
+}
+
+
+get('calculateCalories').addEventListener('click', calculateCalories);
 
 //Switch Button Implementation
 class Show {
