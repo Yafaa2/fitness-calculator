@@ -45,6 +45,8 @@ def sign_up():
 @auth.route('/login', methods=['GET','POST'])
 def login():
     """Acquiring the login page"""
+    if request.method == 'POST':
+        return log_in()
     return render_template('login.html')
 
 def log_in():
