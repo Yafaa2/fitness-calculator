@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/css/login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-box">
+            <h1 class="title">Login</h1>
+            <p id="error_message"></p>
+            <p class="info-text">Welcome! Please log in to your account.</p>
+            <form id="form">
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email...." required>
+                    <div id="emailError" style="color:rgb(186, 0, 0);"></div>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                    <div id="passwordError" style="color:rgb(186, 0, 0);"></div>
+                </div>
+                <button type="submit" class="btn" id="loginButton">Log In</button>
+            </form>
+            <p class="signup-link">Don't have an account? <a href="/templates/sign_up.html">Sign up here</a>.</p>
+        </div>
+    </div>
+    <script  src="/static/js/login.js"></script>
+</body>
+</html>
