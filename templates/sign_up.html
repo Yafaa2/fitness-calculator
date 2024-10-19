@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/static/css/sign_up.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-box">
+            <h1 class="title">Sign Up</h1>
+            <p id="error_message"></p>
+            <p class="info-text">Sign up to save your results and access them later!</p>
+            <form id="form">
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email....">
+                    <div id="emailError" style="color:rgb(186, 0, 0);"></div>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password">
+                    <div id="passwordError" style="color:rgb(186, 0, 0);"></div>
+                </div>
+                <div class="input-group">
+                    <label for="confirm_password">Confirm Password</label>
+                    <input type="password" id="confirm_password" name="confirm_password">
+                    <div id="confirmPasswordError" style="color:rgb(186, 4, 4);"></div>
+                </div>
+                <button type="submit" class="btn" id="signUpButton">Sign Up</button>
+            </form>
+            <p class="login-link">Already have an account? <a href="/login">Log in here</a>.</p>
+        </div>
+    </div>
+    <script src="/static/js/sign_up.js"></script>
+</body>
+</html>
