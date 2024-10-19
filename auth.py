@@ -1,6 +1,6 @@
 """authentication endpoints"""
 import json
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash,check_password_hash
 from flask import Blueprint, render_template, request, jsonify
 
 auth = Blueprint('auth', __name__)
@@ -40,7 +40,34 @@ def sign_up():
 
     return jsonify({"message": "Account created!"}), 201
 
+
+
 @auth.route('/login', methods=['GET','POST'])
 def login():
     """Acquiring the login page"""
     return render_template('login.html')
+
+def log_in():
+    """Login authentication"""
+    user_input = request.json
+    email = user_input.get('email')
+    password = user_input.get('password')
+
+
+    try:
+        with open('users.json', 'r', encoding="utf-8") as file:
+            users = json.load(file)
+    except FileNotFoundError:
+        return jsonify({"error": "User data not found."}), 500
+    except json.JSONDecodeError:
+        return jsonify({"error": "Error reading user data."}), 500
+
+
+    for user in users:
+        if user['email'] == email:
+            if check_password_hash(user['password'], password):
+                return jsonify({"message": "Login successful!"}), 200
+
+            return jsonify({"error": "Incorrect password."}), 400
+
+    return jsonify({"error": "User does not exist."}), 404
