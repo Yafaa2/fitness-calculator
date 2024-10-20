@@ -186,3 +186,15 @@ select{
     margin-left: 10px; 
 }
 
+#logLink{
+    font-weight: bold;
+    font-size: 18px;
+    color: rgb(76, 175, 80);
+    position: absolute;
+    top: 12.6%;
+    left: 30%;
+}
+
+#loginLink:hover{
+    background-color: rgb(56, 111, 59);
+}
