@@ -1,0 +1,97 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: rgb(251, 250, 245);
+}
+
+h1, a {
+    text-align: center;
+    color: rgb(0, 0, 0);
+}
+
+a {
+    font-weight: bold;
+    font-size: 18px;
+    display: block;
+    margin-top: 10px;
+    color: rgb(76, 175, 80);
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.container {
+    width: 80%;
+    margin: 50px auto;
+}
+
+.title {
+    text-align: center;
+    font-size: 24px;
+    color: #424242;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.columns {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.column {
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 1px 10px 1px rgba(0, 0, 0, 0.2);
+    flex: 1;
+}
+
+.subtitle {
+    font-size: 20px;
+    color: rgb(76, 175, 80);
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: bold;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+
+
+.tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tab {
+    padding: 10px;
+    background-color: #e0fae6;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: 1px solid rgb(76, 175, 80);
+}
+
+.tab:hover {
+    background-color: rgb(56, 111, 59); 
+    color: #ffffff;
+}
+
+.counter {
+    font-size: 16px; 
+    margin-left: 5px; 
+    color: rgb(76, 175, 80); 
+}
+
+
+@media (max-width: 768px) {
+    .columns {
+        flex-direction: column;
+    }
+}
