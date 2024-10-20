@@ -196,5 +196,18 @@ select{
 }
 
 #loginLink:hover{
-    background-color: rgb(56, 111, 59);
+    text-decoration: none;
+}
+
+#profileLink{
+    font-weight: bold;
+    font-size: 18px;
+    color: rgb(76, 175, 80);
+    position: absolute;
+    top: 12.6%;
+    right: 30%;
+}
+
+#Link:hover{
+    text-decoration: none;
 }

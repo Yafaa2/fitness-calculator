@@ -1,19 +1,19 @@
 """authentication endpoints"""
 import json
 from werkzeug.security import generate_password_hash,check_password_hash
-from flask import Blueprint, render_template, request, jsonify
+from flask import Blueprint, render_template, request, jsonify,session
 
 auth = Blueprint('auth', __name__)
 
 @auth.route('/sign_up', methods=['GET', 'POST'])
 def signup_page():
-    """Acquiring signup page"""
+    """acquiring signup page"""
     if request.method == 'POST':
         return sign_up()
     return render_template('sign_up.html')
 
 def sign_up():
-    """Sign up authentication"""
+    """sign up authentication"""
     user_input = request.json
     email = user_input.get('email')
     password = user_input.get('password')
@@ -44,13 +44,13 @@ def sign_up():
 
 @auth.route('/login', methods=['GET','POST'])
 def login():
-    """Acquiring the login page"""
+    """acquiring the login page"""
     if request.method == 'POST':
         return log_in()
     return render_template('login.html')
 
 def log_in():
-    """Login authentication"""
+    """login authentication"""
     user_input = request.json
     email = user_input.get('email')
     password = user_input.get('password')
@@ -68,6 +68,7 @@ def log_in():
     for user in users:
         if user['email'] == email:
             if check_password_hash(user['password'], password):
+                session['user'] = email
                 return jsonify({"message": "Login successful!"}), 200
 
             return jsonify({"error": "Incorrect password."}), 400

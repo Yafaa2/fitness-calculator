@@ -20,7 +20,13 @@
             background-repeat: no-repeat;
         }
     </style>
-    <div> <a href="/login" id = "logLink">Login</a></div>
+
+    {% if user_logged_in %}
+     <div><a href="/profile" id = "profileLink">Profile</a></div>
+    {% else %}
+     <div><a href="/login" id = "logLink">Login</a></div>
+    {% endif %}
+
     <div class = "container">
         <h1>.Fit</h1>
         <!-- Switch Button -->
@@ -105,7 +111,7 @@
             </a>
         </div>
     </div>
-    
+
     <script src="/static/js/script.js"></script>
 </body>
 </html>

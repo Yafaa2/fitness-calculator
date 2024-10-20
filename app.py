@@ -1,13 +1,17 @@
-"""Main-page endpoints and Backend"""
-from flask import Flask, request, jsonify, render_template
+"""main-page endpoints and Backend"""
+from flask import Flask, request, jsonify, render_template,session
 from auth import auth
+from user import user
 
 app = Flask(__name__)
 
 app.register_blueprint(auth)
+app.register_blueprint(user)
+app.secret_key = '787898'
+
 
 class GenderSwitch:
-    """To calculate calories based on gender"""
+    """to calculate calories based on gender"""
 
     def __init__(self):
         self.activity_constants = {
@@ -19,14 +23,14 @@ class GenderSwitch:
         }
 
     def calculate_bmr(self, age, height, weight, gender):
-        """Base BMR calculation for male and female"""
+        """base BMR calculation for male and female"""
         if gender.lower() == "male":
             return (10 * weight) + (6.25 * height) - (5 * age) + 5
 
         return (10 * weight) + (6.25 * height) - (5 * age) - 161
 
     def calculate_tdee(self, bmr, activity_level):
-        """Calculate Total Daily Energy Expenditure based on activity level"""
+        """calculate Total Daily Energy Expenditure based on activity level"""
         activity_level_key = activity_level.lower().split(":")[0]
         return bmr * self.activity_constants.get(activity_level_key, 1.2)
 
@@ -35,7 +39,8 @@ def main_page():
     """aquiring the main page"""
     if request.method == 'POST':
         return calculate_bmi()
-    return render_template('main_page.html')
+    user_logged_in = 'user' in session
+    return render_template('main_page.html', user_logged_in=user_logged_in)
 
 def calculate_bmi():
     """BMI Calculator Endpoint"""
@@ -65,7 +70,7 @@ def calculate_bmi():
 
 @app.route('/calculate-calories', methods=['GET', 'POST'])
 def calculate_calories():
-    """Calories Calculator endpoint"""
+    """calories Calculator endpoint"""
     main_page()
     user_data = request.json
     age = user_data['age']
