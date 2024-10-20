@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 app.register_blueprint(auth)
 app.register_blueprint(user)
-app.secret_key = '787898'
+app.secret_key = 'K_hedr333'
 
 
 class GenderSwitch:

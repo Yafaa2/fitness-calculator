@@ -73,4 +73,4 @@ def log_in():
 
             return jsonify({"error": "Incorrect password."}), 400
 
-    return jsonify({"error": "User does not exist."}), 404
+    return jsonify({"error": "User does not exist. Please sign up!"}), 404
