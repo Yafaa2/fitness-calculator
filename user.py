@@ -1,5 +1,6 @@
 """Profile page endpoints and Backend"""
 import json
+from datetime import datetime
 from flask import Blueprint,render_template,session,redirect,request,jsonify
 
 user = Blueprint('user',__name__)
@@ -34,11 +35,13 @@ def logout():
     session.pop('user', None)
     return redirect('/')
 
+
+
 @user.route('/save', methods=['GET', 'POST'])
 def save():
-    """Save BMI or Calories results for the logged-in user."""
+    """Save BMI or Calories results for the logged-in user"""
     if 'user' not in session:
-        return redirect('/sign_up')  # Redirect to sign-up page if user is not logged in.
+        return redirect('/sign_up')  
 
     current_user = session['user']
     result_data = request.get_json()
@@ -47,34 +50,39 @@ def save():
         with open('users.json', 'r+', encoding='utf-8') as file:
             users = json.load(file)
 
-            user_data = next((user for user in users if user['email'] == current_user), None)
+            user_data = None
+            for user in users:
+                if user['email'] == current_user:
+                    user_data = user
+                    break
 
             if user_data is None:
                 return jsonify({'error': 'User not found'}), 404
+            if 'bmi' not in user_data:
+                user_data['bmi'] = []  
+            if 'calories' not in user_data:
+                user_data['calories'] = []  
 
-            # Ensure 'bmi' and 'calories' keys exist for the user
-            user_data.setdefault('bmi', [])  # Initialize bmi as an empty list if it doesn't exist
-            user_data.setdefault('calories', [])  # Initialize calories as an empty list if it doesn't exist
+            current_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-            # Validate and save BMI data
             if result_data['type'] == 'bmi':
                 bmi_value = result_data['value']
                 if bmi_value['bmi'] and bmi_value['classification'] != 'N/A':
+                    bmi_value['date'] = current_date
                     user_data['bmi'].append(bmi_value)
                 else:
-                    return jsonify({'error': 'Please calculate your BMI before saving.'}), 400
-
-            # Validate and save Calories data
+                    return jsonify({'error': 'Invalid BMI result'}), 400
             elif result_data['type'] == 'calories':
                 calories_value = result_data['value']
-                if (
-                    calories_value['loseWeight'] not in (None,0,'', '0', 'N/A') and
-                    calories_value['maintainWeight'] not in (None, 0, '', '0', 'N/A') and
-                    calories_value['gainWeight'] not in (None, 0, '', '0', 'N/A')
-                ):
+
+                if (calories_value.get('loseWeight') and
+                    calories_value.get('maintainWeight') and
+                    calories_value.get('gainWeight')):
+                    
+                    calories_value['date'] = current_date
                     user_data['calories'].append(calories_value)
                 else:
-                    return jsonify({'error': 'Invalid or empty Calories result'}), 400
+                    return jsonify({'error': 'Please calculate your calories before saving.'}), 400
 
             file.seek(0)
             json.dump(users, file, indent=4)
@@ -84,5 +92,3 @@ def save():
 
     except ImportError as e:
         return jsonify({'error': str(e)}), 500
-    
-

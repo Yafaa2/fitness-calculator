@@ -22,6 +22,7 @@
                             <div class="tab">
                                 <h3>BMI: {{ result.bmi }}</h3>
                                 <p>Classification: {{ result.classification }}</p>
+                                <p>Date : {{ result.date }}</p>
                             </div>
                         {% endfor %}
                     {% else %}
@@ -41,6 +42,7 @@
                                 <p>To Lose Weight: {{ result.loseWeight }}</p>
                                 <p>To Maintain Weight: {{ result.maintainWeight }}</p>
                                 <p>To Gain Weight: {{ result.gainWeight }}</p>
+                                <p>Date: {{ result.date }}</p>
                             </div>
                         {% endfor %}
                     {% else %}

@@ -159,9 +159,9 @@ function save(calculatorType) {
             }
         };
     } else if (calculatorType === 'calories') {
-        let caloriesLoseWeight = get("caloriesLoseWeight").value;
-        let caloriesMaintainWeight = get("caloriesMaintainWeight").value;
-        let caloriesGainWeight = get("caloriesGainWeight").value;
+        let caloriesLoseWeight = get("caloriesLoseWeight").innerText;
+        let caloriesMaintainWeight = get("caloriesMaintainWeight").innerText;
+        let caloriesGainWeight = get("caloriesGainWeight").innerText;
 
         if (!caloriesLoseWeight || !caloriesMaintainWeight || !caloriesGainWeight) {
             alert('Please calculate your calories before saving.');
@@ -178,7 +178,6 @@ function save(calculatorType) {
         };
     }
 
-    // Make API request to save results
     fetch('/save', {
         method: 'POST',
         headers: {
@@ -188,7 +187,6 @@ function save(calculatorType) {
     })
     .then(response => {
         if (response.redirected) {
-            // Redirect to the sign-up page
             window.location.href = '/sign_up';
         }
         return response.json();
@@ -203,7 +201,6 @@ function save(calculatorType) {
     .catch(error => console.error('Error:', error));
 }
 
-// Correctly add event listeners
 get('saveBmiButton').addEventListener('click', function() {
     save('bmi');
 });

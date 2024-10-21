@@ -19,7 +19,7 @@ class GenderSwitch:
             "light": 1.375,
             "moderate": 1.55,
             "active": 1.725,
-            "super": 1.9
+            "super active": 1.9
         }
 
     def calculate_bmr(self, age, height, weight, gender):
