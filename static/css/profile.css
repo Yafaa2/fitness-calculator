@@ -7,7 +7,7 @@ body {
 
 h1, a {
     text-align: center;
-    color: rgb(0, 0, 0);
+    color: rgb(76, 175, 80);
 }
 
 a {
@@ -20,6 +20,19 @@ a {
 
 a:hover {
     text-decoration: none;
+}
+
+#userEmail {
+    text-align: center;
+    color: rgb(76, 175, 80); 
+    font-size: 18px;
+    margin-top: -10px; 
+    font-weight: normal;
+}
+
+#userEmail::before {
+    content: "Logged in as: "; 
+    font-weight: bold; 
 }
 
 .container {

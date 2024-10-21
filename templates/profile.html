@@ -8,30 +8,54 @@
 </head>
 <body>
     <h1>Profile</h1>
+    <p id = "userEmail">{{ user }}</p>
     <a href="/logout">Logout</a>
 
     <div class="container">
         <h1 class="title">Your Saved Results</h1>
         <div class="columns">
-            
-            
             <div class="column">
-                <h2 class="subtitle">BMI <span class="counter">(2)</span></h2>
+                <h2 class="subtitle">BMI <span class="counter">({{ bmi_results|length }})</span></h2>
                 <div class="tabs">
-                    <div class="tab" id="bmi1">BMI Result 1</div>
-                    <div class="tab" id="bmi2">BMI Result 2</div>
+                    {% if bmi_results %}
+                        {% for result in bmi_results %}
+                            <div class="tab">
+                                <h3>BMI: {{ result.bmi }}</h3>
+                                <p>Classification: {{ result.classification }}</p>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="tab">
+                            <p>No BMI results saved yet.</p>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
 
-            
             <div class="column">
-                <h2 class="subtitle">Calories <span class="counter">(2)</span></h2>
+                <h2 class="subtitle">Calories <span class="counter">({{ calories_results|length }})</span></h2>
                 <div class="tabs">
-                    <div class="tab" id="cal1">Calories Result 1</div>
-                    <div class="tab" id="cal2">Calories Result 2</div>
+                    {% if calories_results %}
+                        {% for result in calories_results %}
+                            <div class="tab">
+                                <p>To Lose Weight: {{ result.loseWeight }}</p>
+                                <p>To Maintain Weight: {{ result.maintainWeight }}</p>
+                                <p>To Gain Weight: {{ result.gainWeight }}</p>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="tab">
+                            <p>No Calories results saved yet.</p>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
+    <form action="/delete_account" method="POST">
+        <button type="submit" onclick="return confirm('Are you sure you want to delete your account?')">Delete Account</button>
+    </form>
+    
+    <script src="/static/js/profile.js"></script>
 </body>
 </html>

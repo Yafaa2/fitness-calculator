@@ -137,3 +137,77 @@ function clearCalories (){
     }
 }
 get('clearCalories').addEventListener('click',clearCalories)
+
+
+function save(calculatorType) {
+    let resultData = {};
+
+    if (calculatorType === 'bmi') {
+        let bmiValue = get("bmiResult").innerText;
+        let bmiClassification = get("bmiClassification").innerText;
+        
+        if (!bmiValue || !bmiClassification) {
+            alert('Please calculate your BMI before saving.');
+            return;
+        }
+
+        resultData = {
+            type: 'bmi',
+            value: {
+                bmi: bmiValue,
+                classification: bmiClassification
+            }
+        };
+    } else if (calculatorType === 'calories') {
+        let caloriesLoseWeight = get("caloriesLoseWeight").value;
+        let caloriesMaintainWeight = get("caloriesMaintainWeight").value;
+        let caloriesGainWeight = get("caloriesGainWeight").value;
+
+        if (!caloriesLoseWeight || !caloriesMaintainWeight || !caloriesGainWeight) {
+            alert('Please calculate your calories before saving.');
+            return;
+        }
+
+        resultData = {
+            type: 'calories',
+            value: {
+                loseWeight: caloriesLoseWeight,
+                maintainWeight: caloriesMaintainWeight,
+                gainWeight: caloriesGainWeight
+            }
+        };
+    }
+
+    // Make API request to save results
+    fetch('/save', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(resultData)
+    })
+    .then(response => {
+        if (response.redirected) {
+            // Redirect to the sign-up page
+            window.location.href = '/sign_up';
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.message) {
+            alert(data.message);
+        } else if (data.error) {
+            alert(data.error);
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+// Correctly add event listeners
+get('saveBmiButton').addEventListener('click', function() {
+    save('bmi');
+});
+
+get('saveCaloriesButton').addEventListener('click', function() {
+    save('calories');
+});
