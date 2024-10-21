@@ -57,6 +57,7 @@ function login() {
     }).then(function(response) {
         return response.json().then(function(data) {
             if (response.ok) {
+                localStorage.setItem('userEmail', email);
                 alert(data.message);  
                 window.location.href = '/';  
             } else {

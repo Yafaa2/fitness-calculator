@@ -102,6 +102,12 @@ a:hover {
     color: rgb(76, 175, 80); 
 }
 
+#arrow{
+    position: absolute;
+    left: 5%;
+    color: rgb(76, 175, 80);
+}
+
 
 @media (max-width: 768px) {
     .columns {
