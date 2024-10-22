@@ -9,7 +9,7 @@ user = Blueprint('user',__name__)
 def profile():
     """Profile page for logged-in users."""
     if 'user' not in session:
-        return redirect('/login')  # Redirect to login page if user is not logged in.
+        return redirect('/login')
 
     current_user = session['user']
 
@@ -41,7 +41,7 @@ def logout():
 def save():
     """Save BMI or Calories results for the logged-in user"""
     if 'user' not in session:
-        return redirect('/sign_up')  
+        return redirect('/sign_up')
 
     current_user = session['user']
     result_data = request.get_json()
@@ -59,9 +59,9 @@ def save():
             if user_data is None:
                 return jsonify({'error': 'User not found'}), 404
             if 'bmi' not in user_data:
-                user_data['bmi'] = []  
+                user_data['bmi'] = []
             if 'calories' not in user_data:
-                user_data['calories'] = []  
+                user_data['calories'] = []
 
             current_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
@@ -78,7 +78,7 @@ def save():
                 if (calories_value.get('loseWeight') and
                     calories_value.get('maintainWeight') and
                     calories_value.get('gainWeight')):
-                    
+
                     calories_value['date'] = current_date
                     user_data['calories'].append(calories_value)
                 else:
@@ -91,4 +91,34 @@ def save():
         return jsonify({'message': 'Results saved successfully'}), 200
 
     except ImportError as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@user.route('/delete_account', methods=['POST'])
+def delete_account():
+    """Deleting the account of the user completely"""
+    if 'user' not in session:
+        return redirect('/sign_up')
+
+    current_user_email = session['user']
+
+    try:
+        with open('users.json', 'r+', encoding='utf-8') as file:
+            users = json.load(file)
+
+            if not any(user['email'] == current_user_email for user in users):
+                print(f"No account found for email: {current_user_email}")
+                return jsonify({'error': 'No account found for this email.'}), 404
+
+            updated_users = [user for user in users if user['email'] != current_user_email]
+
+            file.seek(0)
+            json.dump(updated_users, file, indent=4)
+            file.truncate()
+
+        session.pop('user', None)
+        return jsonify({'message': 'Account deleted successfully'}), 200
+
+    except Exception as e:
+        print(f"Error occurred while deleting account: {str(e)}")
         return jsonify({'error': str(e)}), 500

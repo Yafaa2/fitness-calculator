@@ -108,6 +108,32 @@ a:hover {
     color: rgb(76, 175, 80);
 }
 
+.button-container {
+    display: flex;                
+    justify-content: center;      
+    margin-top: 20px;           
+}
+
+#deleteAccountButton {
+    background-color: #d9534f;   
+    color: white;                 
+    border: none;                 
+    border-radius: 5px;          
+    padding: 10px 20px;         
+    font-size: 16px;              
+    cursor: pointer;              
+    transition: background-color 0.3s, transform 0.2s; 
+}
+
+#deleteAccountButton:hover {
+    background-color: #c9302c;    
+    transform: scale(1.05);       
+}
+
+#deleteAccountButton:active {
+    transform: scale(0.95);       
+}
+
 
 @media (max-width: 768px) {
     .columns {

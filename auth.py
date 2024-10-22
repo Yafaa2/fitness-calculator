@@ -38,7 +38,7 @@ def sign_up():
     with open('users.json', 'w', encoding="utf-8") as file:
         json.dump(users, file, indent=4)
 
-    return jsonify({"message": "Account created!"}), 201
+    return jsonify({"message": "Account created successfully!"}), 201
 
 
 
