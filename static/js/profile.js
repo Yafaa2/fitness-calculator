@@ -25,7 +25,7 @@ function deleteAccount() {
         .then(function(data) {
             if (data.message) {
                 alert(data.message);
-                window.location.href = '/sign_up';  
+                window.location.href = '/';  
             } else if (data.error) {
                 alert(data.error);
             }

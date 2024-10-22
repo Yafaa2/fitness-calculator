@@ -1,5 +1,5 @@
 // a function to get element by id as to prevent repetition
-function get(id){
+function get(id) {
     return document.getElementById(id)
 }
 
@@ -16,7 +16,7 @@ class SignUpValidation {
     }
 
     checkEmail() {
-        const emailValue = this.email.value.trim();  
+        const emailValue = this.email.value.trim();
         if (!emailValue) {
             return 'Please enter your email';
         }
@@ -27,7 +27,7 @@ class SignUpValidation {
     }
 
     checkPassword() {
-        const passwordValue = this.password.value.trim();  
+        const passwordValue = this.password.value.trim();
         if (!passwordValue) {
             return 'Please enter your password';
         }
@@ -71,25 +71,23 @@ function sign_up() {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ email: email, password: password })  
-    }).then(function(response) {
-        console.log('Response status:', response.status); 
+        body: JSON.stringify({ email: email, password: password })
+    }).then(function (response) {
 
         if (response.ok) {
-            return response.json().then(function(data) {
-                alert(data.message); 
-                window.location.href = '/login';  
+            return response.json().then(function (data) {
+                alert(data.message);
+                window.location.href = '/login';
             });
         } else {
-            return response.json().then(function(data) {
-                console.log('Error message:', data.error); 
+            return response.json().then(function (data) {
                 if (data.error) {
-                    alert(data.error); 
+                    alert(data.error);
                 }
             });
         }
-    }).catch(function(error) {
-        console.error('Error:', error); 
+    }).catch(function (error) {
+        console.error('Error:', error);
     });
 }
 
@@ -98,10 +96,10 @@ function sign_up() {
 
 const validation = new SignUpValidation();
 
-get("signUpButton").addEventListener("click", function(event) {
-    event.preventDefault();  
+get("signUpButton").addEventListener("click", function (event) {
+    event.preventDefault();
 
-    validation.clearErrors();  
+    validation.clearErrors();
 
     const emailError = validation.checkEmail();
     const passwordError = validation.checkPassword();

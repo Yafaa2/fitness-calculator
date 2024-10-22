@@ -59,6 +59,7 @@ function login() {
             if (response.ok) {
                 localStorage.setItem('userEmail', email);
                 alert(data.message);  
+                handlePendingSaveData(); 
                 window.location.href = '/';  
             } else {
                 if (data.error) {
@@ -71,16 +72,38 @@ function login() {
     });
 }
 
+function handlePendingSaveData() {
+    const pendingData = localStorage.getItem('pendingSaveData');
+    if (pendingData) {
+        fetch('/save', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: pendingData 
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                alert("Welcome. " + data.message);
+                localStorage.removeItem('pendingSaveData'); 
+            } else if (data.error) {
+                alert("Error saving pending data: " + data.error);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+}
 
 const LogInValidation = new LoginValidation();
 
 get("loginButton").addEventListener("click", function(event) {
     event.preventDefault();  
 
-    LogInValidation .clearErrors();  
+    LogInValidation.clearErrors();  
 
-    const emailError = LogInValidation .checkEmail();
-    const passwordError = LogInValidation .checkPassword();
+    const emailError = LogInValidation.checkEmail();
+    const passwordError = LogInValidation.checkPassword();
 
     LogInValidation.showError(LogInValidation.emailError, emailError);
     LogInValidation.showError(LogInValidation.passwordError, passwordError);

@@ -86,7 +86,6 @@ a:hover {
     background-color: #e0fae6;
     border-radius: 8px;
     text-align: center;
-    cursor: pointer;
     transition: background-color 0.3s ease;
     border: 1px solid rgb(76, 175, 80);
 }

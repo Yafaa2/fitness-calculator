@@ -88,7 +88,7 @@ def save():
             json.dump(users, file, indent=4)
             file.truncate()
 
-        return jsonify({'message': 'Results saved successfully'}), 200
+        return jsonify({'message': 'Saved successfully!'}), 200
 
     except ImportError as e:
         return jsonify({'error': str(e)}), 500
