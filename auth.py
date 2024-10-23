@@ -1,4 +1,4 @@
-"""authentication endpoints"""
+"""authentication endpoints """
 import json
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask import Blueprint, render_template, request, jsonify,session
@@ -30,6 +30,7 @@ def sign_up():
         if user['email'] == email:
             return jsonify({"error": "User already exists."}), 400
 
+    # hashing the password
     hashed_password = generate_password_hash(password)
 
     new_user = {"email": email, "password": hashed_password}

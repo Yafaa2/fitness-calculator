@@ -4,6 +4,7 @@ function get(id){
 }
 
 class LoginValidation {
+    //handling the cases of login validation
     constructor() {
         this.email = get('loginEmail');
         this.emailError = get('loginEmailError');
@@ -35,10 +36,12 @@ class LoginValidation {
     }
 
     showError(element, message) {
+        //showing the error messages if exists
         element.textContent = message;
     }
 
     clearErrors() {
+        //clearing any past errors
         this.showError(this.emailError, "");
         this.showError(this.passwordError, "");
     }
@@ -58,8 +61,8 @@ function login() {
         return response.json().then(function(data) {
             if (response.ok) {
                 localStorage.setItem('userEmail', email);
-                alert(data.message);  
-                handlePendingSaveData(); 
+                alert(data.message);
+                handlePendingSaveData(); //helper function
                 window.location.href = '/';  
             } else {
                 if (data.error) {
@@ -73,6 +76,7 @@ function login() {
 }
 
 function handlePendingSaveData() {
+    //saving the results if any calculations was done before signing up
     const pendingData = localStorage.getItem('pendingSaveData');
     if (pendingData) {
         fetch('/save', {
@@ -100,7 +104,7 @@ const LogInValidation = new LoginValidation();
 get("loginButton").addEventListener("click", function(event) {
     event.preventDefault();  
 
-    LogInValidation.clearErrors();  
+    LogInValidation.clearErrors();
 
     const emailError = LogInValidation.checkEmail();
     const passwordError = LogInValidation.checkPassword();

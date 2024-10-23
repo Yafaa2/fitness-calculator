@@ -3,7 +3,7 @@ function get(id) {
     return document.getElementById(id)
 }
 
-//a function to fetch the BMI response data from the backend
+//fetching the BMI response data from the backend
 function calculateBMI() {
   let height = parseFloat(get('bmiHeight').value);
     let weight = parseFloat(get('bmiWeight').value);
@@ -31,7 +31,7 @@ function calculateBMI() {
 }
 get('calculateBMI').addEventListener('click', calculateBMI);
 
-//a function to fetch the Calories response data from the backend
+//fetching the Calories response data from the backend
 function calculateCalories() {
     let age = get('caloriesAge').value.trim();
     let gender = document.querySelector('input[name="gender"]:checked');
@@ -116,14 +116,16 @@ function switchNow() {
     } else {
         switchCalculators.showBMI();
     }
-    // Toggling the flag to remember the current state
+    //flag to remember the current state
     isBMICalculatorVisible = !isBMICalculatorVisible;
 }
 
 get('switchButton').addEventListener('click', switchNow)
 
 //clear button implementation
+
 function clearBMI() {
+    //clear bmi text fields
     get('bmiHeight').value = '';
     get('bmiWeight').value = '';
     get('bmiResult').innerText = '0';
@@ -133,7 +135,7 @@ function clearBMI() {
 get('clearBMI').addEventListener('click', clearBMI)
 
 function clearCalories() {
-
+    //clear calories text fields
     get('caloriesAge').value = '';
     get('caloriesHeight').value = '';
     get('caloriesWeight').value = '';
@@ -151,6 +153,7 @@ get('clearCalories').addEventListener('click', clearCalories)
 
 
 function save(calculatorType) {
+    //handling save resopnse related to each calculator
     let resultData = {};
 
     if (calculatorType === 'bmi') {
@@ -200,7 +203,7 @@ function save(calculatorType) {
     })
     .then(response => {
         if (response.redirected) {
-            localStorage.setItem('pendingSaveData', JSON.stringify(resultData));
+            localStorage.setItem('pendingSaveData', JSON.stringify(resultData)); //saving the results in the local storage if redirected to the sign up to save it after
             window.location.href = '/sign_up';
         }
         return response.json();

@@ -107,11 +107,11 @@ def delete_account():
             users = json.load(file)
 
             if not any(user['email'] == current_user_email for user in users):
-                print(f"No account found for email: {current_user_email}")
                 return jsonify({'error': 'No account found for this email.'}), 404
 
             updated_users = [user for user in users if user['email'] != current_user_email]
 
+            # starting from the beginning
             file.seek(0)
             json.dump(updated_users, file, indent=4)
             file.truncate()
@@ -119,6 +119,5 @@ def delete_account():
         session.pop('user', None)
         return jsonify({'message': 'Account deleted successfully'}), 200
 
-    except Exception as e:
-        print(f"Error occurred while deleting account: {str(e)}")
+    except ImportError as e:
         return jsonify({'error': str(e)}), 500

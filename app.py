@@ -1,4 +1,4 @@
-"""main-page endpoints and Backend"""
+"""main-page endpoints"""
 from flask import Flask, request, jsonify, render_template,session
 from auth import auth
 from user import user
@@ -21,6 +21,7 @@ class GenderSwitch:
             "active": 1.725,
             "super active": 1.9
         }
+        self.default_activity_level = "sedentary"
 
     def calculate_bmr(self, age, height, weight, gender):
         """base BMR calculation for male and female"""
@@ -29,8 +30,11 @@ class GenderSwitch:
 
         return (10 * weight) + (6.25 * height) - (5 * age) - 161
 
-    def calculate_tdee(self, bmr, activity_level):
+    def calculate_tdee(self, bmr, activity_level = None):
         """calculate Total Daily Energy Expenditure based on activity level"""
+        if activity_level is None:
+            activity_level = self.default_activity_level 
+
         activity_level_key = activity_level.lower().split(":")[0]
         return bmr * self.activity_constants.get(activity_level_key, 1.2)
 
@@ -50,9 +54,9 @@ def calculate_bmi():
     if height is None or weight is None:
         return jsonify({"error": "Missing height or weight"}), 400
 
-    # Calculate BMI
-    bmi = weight / ((height / 100) ** 2)
 
+    bmi = weight / ((height / 100) ** 2)
+    # returning classification based on range
     if bmi < 18.5:
         classification = "Underweight"
     elif 18.5 <= bmi < 25:

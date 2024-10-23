@@ -5,6 +5,7 @@ function get(id) {
 
 
 class SignUpValidation {
+    //handling the cases of signup validation
     constructor() {
         this.email = get('email');
         this.emailError = get('emailError');
@@ -51,10 +52,12 @@ class SignUpValidation {
     }
 
     showError(element, message) {
+        //showing the error messages if exists
         element.textContent = message;
     }
 
     clearErrors() {
+        //clearing any past errors
         this.showError(this.emailError, "");
         this.showError(this.passwordError, "");
         this.showError(this.confirmPasswordError, "");

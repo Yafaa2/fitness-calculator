@@ -9,6 +9,7 @@ if (userEmail) {
 }
 
 function deleteAccount() {
+    //handilng delete account resopnse 
     if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
         fetch('/delete_account', {
             method: 'POST',
