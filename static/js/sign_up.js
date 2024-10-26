@@ -14,6 +14,7 @@ class SignUpValidation {
         this.confirmPassword = get('confirm_password');
         this.confirmPasswordError = get('confirmPasswordError');
         this.emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        this.passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     }
 
     checkEmail() {
@@ -32,8 +33,11 @@ class SignUpValidation {
         if (!passwordValue) {
             return 'Please enter your password';
         }
-        if (passwordValue.length < 6) {
-            return 'Password must be at least 6 characters';
+        if (passwordValue.length < 8) {
+            return 'Password must be at least 8 characters';
+        }
+        if (!this.passwordRegex.test(passwordValue)){
+            return "Weak Password! Your password must contain at least: 8 characters,One uppercase letter,One lowercase letter,One number,One special character (e.g., @$!%*?&)"
         }
         return "";
     }

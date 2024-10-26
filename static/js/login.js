@@ -29,8 +29,8 @@ class LoginValidation {
         if (!passwordValue) {
             return 'Please enter your password';
         }
-        if (passwordValue.length < 6) {
-            return 'Password must be at least 6 characters';
+        if (passwordValue.length < 8) {
+            return 'Password must be at least 8 characters';
         }
         return "";
     }

@@ -70,8 +70,12 @@ function edit (){
             return response.json();
         })
         .then(data => {
-            alert(data.message); 
+            if (data.error){
+                alert(data.error)
+            }else{
+                alert(data.message); 
             location.reload(); 
+            }
         })
         .catch(error => console.error('Error:', error));
     }

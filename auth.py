@@ -72,6 +72,6 @@ def log_in():
                 session['user'] = email
                 return jsonify({"message": "Login successful!"}), 200
 
-            return jsonify({"error": "Incorrect password."}), 400
+            return jsonify({"error": "Incorrect email or password."}), 400
 
     return jsonify({"error": "User does not exist. Please sign up!"}), 404

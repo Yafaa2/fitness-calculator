@@ -120,6 +120,8 @@ def edit():
             if edit_type == 'bmi':
                 for data in user_data.get('bmi'):
                     if data.get('date') == edit_date:
+                        if data['title'] == new_title:
+                            return jsonify({'error': 'it is already the same title'}), 400
                         data['title'] = new_title
                         break
                 else:
@@ -128,6 +130,8 @@ def edit():
             elif edit_type == 'calories':
                 for data in user_data.get('calories'):
                     if data.get('date') == edit_date:
+                        if data['title'] == new_title:
+                            return jsonify({'error': 'it is already the same title!!!'}), 400
                         data['title'] = new_title
                         break
                 else:
@@ -159,7 +163,6 @@ def delete_account():
 
             updated_users = [user for user in users if user['email'] != current_user_email]
 
-            
             file.seek(0)
             json.dump(updated_users, file, indent=4)
             file.truncate()
