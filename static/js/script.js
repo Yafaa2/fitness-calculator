@@ -8,8 +8,18 @@ function calculateBMI() {
   let height = parseFloat(get('bmiHeight').value);
     let weight = parseFloat(get('bmiWeight').value);
 
-    if (isNaN(height) || isNaN(weight) || height <= 0 || weight <= 0 || height > 300 || weight > 500) {
+    if (isNaN(height) || isNaN(weight) || height <= 0 || weight <= 0) {
         alert('Please enter valid height and weight.');
+        return;
+    }
+
+    if (height > 250 || height < 60 ) {
+        alert('Heigth can not be under 60 or above 250');
+        return;
+    }
+
+    if ( weight > 500 || weight < 30  ) {
+        alert('Weigth can not be under 30 or above 500');
         return;
     }
 
@@ -51,8 +61,22 @@ function calculateCalories() {
     weight = parseFloat(weight);
 
 
-    if ([age, height, weight].some(item => isNaN(item)) || height > 300 || weight > 500) {
+    if ([age, height, weight].some(item => isNaN(item))) {
         alert('Please enter valid numerical inputs');
+        return;
+    }
+
+    if (height > 250 || height < 60 ) {
+        alert('Heigth can not be under 60 or above 250');
+        return;
+    }
+
+    if ( weight > 500 || weight < 30  ) {
+        alert('Weigth can not be under 30 or above 500');
+        return;
+    }
+    if (age > 120) {
+        alert('Age can not above 120');
         return;
     }
 

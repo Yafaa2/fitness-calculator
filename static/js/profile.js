@@ -44,6 +44,7 @@ function deleteAccount() {
 get('deleteAccountButton').addEventListener('click', deleteAccount);
 
 
+//handling the user's edit
 function edit (){
     const newTitle = prompt("Edit title:", get('result-title').textContent.trim());
     if (newTitle) {

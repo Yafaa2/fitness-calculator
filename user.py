@@ -118,7 +118,7 @@ def edit():
                 return jsonify({'error': 'User not found'}), 404
 
             if edit_type == 'bmi':
-                for data in user_data.get('bmi', []):
+                for data in user_data.get('bmi'):
                     if data.get('date') == edit_date:
                         data['title'] = new_title
                         break
@@ -126,7 +126,7 @@ def edit():
                     return jsonify({'error': 'No BMI entry found for the specified date.'}), 404
 
             elif edit_type == 'calories':
-                for data in user_data.get('calories', []):
+                for data in user_data.get('calories'):
                     if data.get('date') == edit_date:
                         data['title'] = new_title
                         break
@@ -159,7 +159,7 @@ def delete_account():
 
             updated_users = [user for user in users if user['email'] != current_user_email]
 
-            # starting from the beginning
+            
             file.seek(0)
             json.dump(updated_users, file, indent=4)
             file.truncate()
