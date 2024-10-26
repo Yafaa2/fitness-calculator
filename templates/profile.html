@@ -24,7 +24,7 @@
                     {% if bmi_results %}
                         {% for result in bmi_results %}
                             <div class="tab">
-                                <p id="result-title" >{{ result.title }} <i class="fas fa-edit edit-icon" data-type="bmi" data-date="{{ result.date }}" ></i></p>
+                                <p id="result-title" >{{ result.title }} <i class="fas fa-edit edit-icon" id="icon" data-type="bmi" data-date="{{ result.date }}" ></i></p>
                                 <p>BMI: {{ result.bmi }}</p>
                                 <p>Classification: {{ result.classification }}</p>
                                 <p>Date: {{ result.date }}</p>
@@ -44,7 +44,7 @@
                     {% if calories_results %}
                         {% for result in calories_results %}
                             <div class="tab">
-                                <p id="result-title">{{ result.title }} <i class="fas fa-edit edit-icon" data-type="calories" data-date="{{ result.date }}"></i></p>
+                                <p id="result-title">{{ result.title }} <i class="fas fa-edit edit-icon" id="icon" data-type="calories" data-date="{{ result.date }}"></i></p>
                                 <p>To Lose Weight: {{ result.loseWeight }}</p>
                                 <p>To Maintain Weight: {{ result.maintainWeight }}</p>
                                 <p>To Gain Weight: {{ result.gainWeight }}</p>

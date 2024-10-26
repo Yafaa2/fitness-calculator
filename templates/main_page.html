@@ -7,33 +7,24 @@
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <div class="banner">
-        <h1></h1>
-    </div>
-    <style>
-        body {
-            margin: 0;
-            height: 128vh;
-            background-image: url('/static/images/cartoon-gym-with-machines.jpg'); 
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-    </style>
-
-    {% if user_logged_in %}
-     <div><a href="/profile" id = "profileLink">Profile</a></div>
-    {% else %}
-     <div><a href="/login" id = "logLink">Login</a></div>
-    {% endif %}
-
     <div class = "container">
-        <h1>.Fit</h1>
-        <!-- Switch Button -->
+        <div class="banner">
+            <h1></h1>
+        </div>
+        <div class="links">
+            {% if user_logged_in %}
+            <a href="/profile" id = "profileLink">Profile</a>
+            {% else %}
+            <a href="/login" id = "logLink">Login</a>
+            {% endif %}
+            <h1>.Fit</h1>
+        </div>
+        
+        
         <button id="switchButton">Switch to Calories Calculator</button>
         <h2 id="currentCalculator">BMI</h2>
         
-        <!-- BMI Calculator Section -->
+        
         <div id="bmiCalculator" class="calculator">
             <div class="inputs">
                 <div class="input-group">
@@ -60,7 +51,6 @@
             </a>
         </div>
 
-        <!-- Calories Calculator Section (Initially Hidden) -->
         <div id="caloriesCalculator" class="calculator" style="display: none;">
             <div class="inputs">
                 <div class="input-group">

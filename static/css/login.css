@@ -101,7 +101,10 @@ input[type="email"]:focus, input[type="password"]:focus {
     border: 2px solid rgb(76, 175, 80);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 320px) {
+    *{
+        display: grid;
+    }
     .form-box {
         padding: 20px;
     }

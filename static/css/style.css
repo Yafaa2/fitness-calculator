@@ -7,7 +7,13 @@ body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 20px;
-    background-color: #e0fae6;
+    background-image: url('/static/images/cartoon-gym-with-machines.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+    min-height: 100vh;
 }
 
 .container {
@@ -19,20 +25,23 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
+    position: relative;
+    padding-top: 60px;
+    
 }
 
 .banner {
-    width: 800px;
+    width: 100%;
     background-color: rgb(76, 175, 80);
     text-align: center;
     margin: auto;
     padding: 17px 0;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    border-radius: 15px 15px 0px 0px;
+    border-radius: 7px 7px 0px 0px;
 }
 
 h1 {
@@ -205,9 +214,8 @@ select{
     font-weight: bold;
     font-size: 18px;
     color: rgb(76, 175, 80);
-    position: absolute;
-    top: 12.6%;
-    left: 30%;
+    position: relative;
+    margin-bottom: 10px;
 }
 
 #loginLink:hover{
@@ -218,11 +226,47 @@ select{
     font-weight: bold;
     font-size: 18px;
     color: rgb(76, 175, 80);
-    position: absolute;
-    top: 12.6%;
-    right: 30%;
+    position: relative;
+    margin-bottom: 10px;
 }
 
-#Link:hover{
-    text-decoration: none;
+
+
+.links{
+    display: flex;
+    flex-direction: column-reverse;
 }
+
+@media (max-width: 320px) {
+    *{
+        display: grid;
+    }
+    .container{
+        padding:40px;
+        
+    }
+    .banner {
+        padding: 5px ; 
+    }
+
+    h1{
+        font-size: 25px;
+    }
+    
+    .inputs, .input-group {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch; 
+        gap: 10px; 
+    }
+}
+
+@media (max-width: 467px) {
+    .inputs, .input-group {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch; 
+        gap: 10px; 
+    }
+}
+

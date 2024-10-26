@@ -133,9 +133,25 @@ a:hover {
     transform: scale(0.95);       
 }
 
+#result-title{
+    font-weight: bold;
+    font-size: 20px;
+}
 
-@media (max-width: 768px) {
+#icon{
+    cursor: pointer;
+}
+
+#icon:hover{
+    color: red;
+}
+
+@media (max-width: 320px) {
+    *{
+        display: grid;
+    }
     .columns {
         flex-direction: column;
     }
 }
+
