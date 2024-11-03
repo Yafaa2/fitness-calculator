@@ -2,7 +2,11 @@
 This a fitness project featuring two calculators used frequently in the realm of fitness. Most of the athlets and people who follow a rotten with or just a diet use these two more than once in a year to track there progress. In this project i am offering an easy what to do it with calm and user friendly UI
 - What does it do?<br>This is a project to calculate BMI and calories intake 
 - What is the "new feature" which you have implemented that
-we haven't seen before? <br>Calculating the BMI (Body Mass Index)<br>Calculating Calories intake<br>Saving the calculation in a the user's history and represent it with a date to help him track his progress
+we haven't seen before? <br>Calculating the BMI (Body Mass Index) ![My Image](./static/images/Capture.PNG)<br>Calculating Calories intake ![My Image](./static/images/Capture%202.PNG)<br>Saving the calculation in a the user's history and represent it with a date to help him track his progress ![My Image](./static/images/Capture%203.PNG)
+
+
+
+
 ## Prerequisites
 Did you add any additional modules that someone needs to
 install (for instance anything in Python that you `pip
